@@ -18,13 +18,13 @@ python3 -m venv env
 ```
 4. Activate the virtual environment:
 - On macOS and Linux:
-  ```
-  source env/bin/activate
-  ```
+```
+source env/bin/activate
+```
 - On Windows:
-  ```
-  env\Scripts\activate
-  ```
+```
+env\Scripts\activate
+```
 
 5. Install the required packages:
 ```
