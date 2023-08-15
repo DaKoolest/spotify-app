@@ -1,0 +1,472 @@
+@font-face {
+    font-family: 'Inter';
+    src: url('inter_variable_font.ttf') format('truetype');
+}
+
+@import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
+
+:root {
+    --background: #0f0f0f;
+    --primary-container: #1d1d1d;
+    --secondary-container: #2f2e2e;
+    --third-container: #424141;
+    --primary-ui: #413e41;
+    --secondary-ui: #494649;
+    --primary-text: #ffffff;
+    --secondary-text: #a7a8a6;
+    --primary-accent: #17d85e;
+    --secondary-accent: #ffffff;
+    --third-accent: #17b350;
+}
+
+html * {
+    font-family: 'Inter', sans-serif;
+    font-weight: medium;
+    color: var(--primary-text);
+}
+
+html,
+body {
+    margin: 0;
+    background-color: var(--background);
+}
+
+.toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex;
+    align-items: center;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: var(--primary-container);
+}
+
+.login,
+.logout,
+.user-info,
+.not-current-page,
+.current-page {
+    display: flex;
+    background-color: var(--primary-container);
+    font-size: 1.3rem;
+    height: 2.5rem;
+    border-style: solid;
+    align-items: center;
+    text-align: center;
+    text-decoration: none;
+    user-select: none;
+    padding: 10px;
+    border: none;
+    width: fit-content;
+    float: inline-start;
+
+}
+
+.search-button {
+    margin-right: auto;
+}
+
+.library-icon,
+.search-icon {
+    height: 65%;
+}
+
+.library-display-text,
+.search-display-text {
+    padding-left: 5%;
+}
+
+.not-current-page,
+.current-page {
+    padding-right: 1.1%;
+}
+
+.login:hover,
+.logout:hover,
+.not-current-page:hover {
+    background-color: var(--primary-ui);
+    border-color: var(--primary-ui);
+    cursor: pointer;
+}
+
+.current-page {
+    background-color: var(--primary-accent);
+    border-color: var(--primary-accent);
+}
+
+.current-page:hover {
+    cursor: pointer;
+}
+
+.user-info {
+    flex-direction: row;
+    gap: .5rem;
+}
+
+.user-profile-picture-container {
+    height: 100%;
+}
+
+.user-profile-picture {
+    border-radius: 50%;
+    height: 100%;
+}
+
+.search-wrapper {
+    display: flex;
+    flex-direction: row;
+    gap: .6rem;
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.search-input {
+    background-color: var(--primary-ui);
+    border: solid var(--primary-ui);
+    border-radius: 10px;
+    outline: none;
+}
+
+.search-input:focus {
+    outline: 1px solid var(--primary-text);
+}
+
+.search-input::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+    /* Remove the default appearance */
+    display: inline-block;
+    width: 14px;
+    height: 14px;
+    background: url('images/x-symbol.svg') no-repeat center;
+    /* Use a custom SVG icon */
+    cursor: pointer;
+}
+
+.album-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 0.75rem;
+    margin-top: 0.75rem;
+    overflow: scroll;
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    overflow: hidden;
+
+    background-color: var(--primary-container);
+    border: solid var(--primary-container);
+    border-radius: 10px;
+
+    margin-top: 5px;
+    padding: 5%
+}
+
+.card:hover {
+    background-color: var(--secondary-container);
+    border: solid var(--secondary-container);
+}
+
+
+.album-cover-container {
+    /* Styling for the album cover */
+    position: relative;
+    /* Allow the album cover to take remaining vertical space */
+    width: 100%;
+    height: auto;
+    margin-bottom: 0.5em;
+    box-shadow: 0px 0px 1em 0.2em rgba(0, 0, 0, 0.5);
+}
+
+/* Styling for the album cover */
+.album-cover {
+    height: 100%;
+    width: 100%;
+    border: none;
+}
+
+.delete-button {
+    position: absolute;
+    top: 1%;
+    right: 5%;
+    height: 20%;
+    width: 20%;
+    opacity: 0%;
+
+    transition: opacity 0.3s ease, top 0.3s ease;
+}
+
+.card:hover .delete-button {
+    top: 5%;
+    right: 5%;
+    opacity: 100%;
+
+    transition: opacity 0.3s ease, top 0.3s ease;
+    cursor: pointer;
+}
+
+.spotify-icon-container {
+    position: absolute;
+    bottom: 1%;
+    right: 5%;
+    height: 20%;
+    width: 20%;
+    opacity: 0%;
+
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.card:hover .spotify-icon-container {
+    bottom: 5%;
+    right: 5%;
+    opacity: 100%;
+
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+    cursor: pointer;
+}
+
+/* Styling for the album name */
+.album-name {
+    font-size: 1.5vw;
+    font-weight: bold;
+    margin-top: 5px;
+
+    white-space: nowrap;
+    /* Prevents text wrapping to the next line */
+    text-overflow: ellipsis;
+    /* Adds "..." to indicate truncation */
+    overflow: hidden;
+    /* Hides the overflowing text */
+}
+
+/* Styling for the artist name */
+.artist-name {
+    font-size: 1.1vw;
+    margin-bottom: 5px;
+
+    white-space: nowrap;
+    /* Prevents text wrapping to the next line */
+    text-overflow: ellipsis;
+    /* Adds "..." to indicate truncation */
+    overflow: hidden;
+    /* Hides the overflowing text */
+}
+
+
+.app-container {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.specific-album-container {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    flex-grow: 0;
+    background-color: var(--primary-container);
+}
+
+.album-container {
+    flex: 2.3;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--primary-container);
+    height: 100%;
+    padding-left: 2%;
+    padding-right: 1%;
+}
+
+.album-info-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    max-height: 100%;
+    padding-right: 2%;
+}
+
+.track-list-container {
+    display: inline-block;
+    background-color: var(--secondary-container);
+    overflow-y: auto;
+    border-radius: 10px;
+    padding: 0.3%;
+    max-height: 96%;
+    width: calc(30vw)
+}
+
+.track {
+    border-radius: 10px;
+    display: flex;
+    /* Use flexbox */
+    justify-content: center;
+    align-items: center;
+    text-align: left;
+    padding-left: 4%;
+    padding-right: 4%;
+    height: 10%;
+    font-size: 1.6em;
+    background-color: var(--secondary-container);
+    white-space: nowrap;
+}
+
+.track:hover {
+    background-color: var(--third-container);
+}
+
+.track-number {
+    flex: 2;
+}
+
+.track-name {
+    flex: 8;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.track-length {
+    justify-content: right;
+    padding-left: 2%;
+}
+
+
+.album-cover-container:hover .spotify-icon-container {
+    bottom: 5%;
+    right: 5%;
+    opacity: 100%;
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+    cursor: pointer;
+}
+
+.big-album-name {
+    margin: 0;
+    font-size: 2.3em;
+}
+
+.big-artist-name {
+    margin: 0;
+    font-size: 1.6em;
+    color: var(--secondary-text)
+}
+
+.extra-album-info {
+    margin: 0;
+    font-size: 1.2em;
+    color: var(--secondary-text)
+}
+
+.user-input-container {
+    flex: 1.7;
+    max-height: 96%;
+    padding: 0% 1% 0.3%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    background-color: var(--secondary-container);
+    font-size: 1.4em;
+    display: inline-block;
+}
+
+.date-container, .rating-container {
+    margin-top: 2%;
+    display: flex;
+    gap: 3%;
+    align-items: center;
+}
+.review-date, .review-text {
+    background-color: var(--secondary-ui);
+    border: solid var(--secondary-text);
+    outline: none;
+}
+
+.review-text {
+    resize: none;
+    width: 98%;
+    height: calc(40vh);
+}
+
+.review-text::placeholder {
+    color: var(--secondary-text);
+}
+
+.save-album-button {
+    height: fit-content;
+    width: fit-content;
+    padding: 2%;
+    background-color: var(--primary-accent);
+    border: solid var(--primary-accent);
+    border-radius: 15px;
+    font-size: 1em;
+}
+
+.save-album-button:hover {
+    cursor: pointer;
+}
+
+.save-album-button:active {
+    background-color: var(--third-accent);
+    border: solid var(--third-accent);
+}
+
+/* use reverse flexbox to take advantage of flex-direction: reverse */
+.star-rating {
+    display: flex;
+    align-items: center;
+    height: fit-content;
+    width: fit-content;
+    flex-direction: row-reverse;
+    position: relative;
+    justify-self: left;
+}
+
+/* hide the inputs */
+.star-rating input {
+    display: none;
+}
+
+/* set properties of all labels */
+.star-rating > label {
+    width: 20px;
+    height: 30px;
+    font-family: Arial;
+    font-size: 30px;
+    padding: 0.25em;
+    color: var(--primary-accent);
+}
+
+/* give label a hover state */
+.star-rating label:hover{
+    color: var(--secondary-accent);
+}
+.star-rating label:hover ~ label:before {
+    color: var(--secondary-accent);
+}
+
+.star-rating label:active::before {
+    transform: scale(1.1);
+}
+
+/* set shape of unselected label */
+.star-rating label::before {
+    content: '\2606';
+    position: absolute;
+    top: 0px;
+}
+
+/* set full star shape for checked label and those that come after it */
+.star-rating input:checked~label:before {
+    content: '\2605';
+}
+
+.load-more {
+    background-color: red;
+    visibility: hidden;
+    height: calc(10vh);
+    height: 1px; /* Set an appropriate height for the sentinel */
+    width: 100%; /* Make the sentinel cover the full width of the viewport */
+    margin-top: -1px; /* Offset the sentinel by its height to overlap content */
+    pointer-events: none; /* Make the sentinel unclickable and non-interactable */
+}

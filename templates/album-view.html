@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="description" content="Album Tracker">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Spotify Album Tracker</title>
+</head>
+
+<body>
+    {% if not session.get('token_info') %}
+        <div class="toolbar">
+            <a class="library-button not-current-page" href="{{url_for('library')}}">
+                <img class="library-icon" src="static/images/library-icon.svg"/>
+                <p class="library-display-text">Library</p>
+            </a>
+
+            <a class="search-button not-current-page" href="{{url_for('search')}}">
+                <img class="search-icon" src="static/images/search-icon.svg"/>
+                <p class="search-display-text">Search</p>
+            </a>
+
+            <a class="login" href="{{ url_for('login') }}">Login</a>
+        </div>
+        <p> Please log in to to use the app</p>
+    {% else %}
+        <div class="app-container">
+            <div class="toolbar">
+                <a class="library-button not-current-page" href="{{url_for('library')}}">
+                    <img class="library-icon" src="static/images/library-icon.svg"/>
+                    <p class="library-display-text">Library</p>
+                </a>
+
+                <a class="search-button not-current-page" href="{{url_for('search')}}">
+                    <img class="search-icon" src="static/images/search-icon.svg"/>
+                    <p class="search-display-text">Search</p>
+                </a>
+
+                <div class="user-info"> 
+                    <p class="user-display-name" data-user-display-name></p>
+                    <a class="user-profile-picture-container" href="" target="_blank" data-user-profile-picture-container>
+                        <img class="user-profile-picture" data-user-profile-picture>
+                    </a>
+                </div>
+    
+                <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+            </div>
+    
+            <div class="specific-album-container">
+                <div class="album-container">
+                    <div class="album-info-container">
+                        <div class="album-cover-container">
+                            <img class="album-cover" alt="Album Cover" data-album-cover>
+                            <a class="spotify-icon-container" target="_blank" data-spotify-icon-container>
+                                <img class="spotify-icon" src="static/images/spotify-icon.svg">
+                            </a>
+                        </div>
+    
+                        <p class="big-album-name" data-album-name></p>
+                        <p class="big-artist-name" data-artist-name></p>
+                        <p class="extra-album-info" data-extra-album-info></p>
+                    </div>
+    
+                    <div class="track-list-container" data-track-list-container></div>
+                </div>
+    
+                <div class="user-input-container">
+                        <div class="date-container">
+                            <label>Date:</label>
+                            <input type="date" class="review-date" min="2000-01-01" max="2023-08-08" data-review-date>
+                        </div>
+                    
+                        <div class="rating-container">
+                            <label>Rating: </label>
+                            <div class="star-rating">
+                                <input type="radio" name="stars" id="star-a" value="5"/>
+                                <label for="star-a"></label>
+
+                                <input type="radio" name="stars" id="star-b" value="4"/>
+                                <label for="star-b"></label>
+                                
+                                <input type="radio" name="stars" id="star-c" value="3"/>
+                                <label for="star-c"></label>
+                                
+                                <input type="radio" name="stars" id="star-d" value="2"/>
+                                <label for="star-d"></label>
+                                
+                                <input type="radio" name="stars" id="star-e" value="1"/>
+                                <label for="star-e"></label>
+                            </div>
+                        </div>
+
+                        <div class="review-container">
+                            <textarea class="review-text" maxlength="1000" placeholder="Write your feelings about the album here..." data-reivew-text></textarea>                    
+                        </div>
+                        
+                        <input class="save-album-button" type="button" value="Submit" data-save-album>
+                </div>
+            </div>
+        </div>
+
+        <template data-track-template>
+            <div class="track">
+                <div class="track-number" data-track-number></div>
+                <div class="track-name" data-track-name></div>
+                <div class="track-length" data-track-length></div>
+            </div>
+        </template>
+        <script src="{{ url_for('static', filename='album_view.js') }}"></script>
+    {% endif %}
+
+</body>
+
+</html>

@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta name="description" content="Album Tracker">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <title>Spotify Album Tracker</title>
+</head>
+
+<body>
+    {% if not session.get('token_info') %}
+    <div class="toolbar">
+        <a class="library-button current-page" href="{{url_for('library')}}">
+            <img class="library-icon" src="static/images/library-icon.svg" />
+            <p class="library-display-text">Library</p>
+        </a>
+
+        <a class="search-button not-current-page" href="{{url_for('search')}}">
+            <img class="search-icon" src="static/images/search-icon.svg" />
+            <p class="search-display-text">Search</p>
+        </a>
+
+        <a class="login" href="{{ url_for('login') }}">Login</a>
+    </div>
+
+    <p> Please log in to to use the app</p>
+    {% else %}
+    <div class="toolbar">
+        <a class="library-button current-page" href="{{url_for('library')}}">
+            <img class="library-icon" src="static/images/library-icon.svg" />
+            <p class="library-display-text">Library</p>
+        </a>
+
+        <a class="search-button not-current-page" href="{{url_for('search')}}">
+            <img class="search-icon" src="static/images/search-icon.svg" />
+            <p class="search-display-text">Search</p>
+        </a>
+
+
+        <div class="user-info">
+            <p class="user-display-name" data-user-display-name></p>
+            <a class="user-profile-picture-container" href="" target="_blank" data-user-profile-picture-container>
+                <img class="user-profile-picture" data-user-profile-picture>
+            </a>
+        </div>
+
+        <a class="logout" href="{{ url_for('logout') }}">Logout</a>
+    </div>
+
+    <div class="album-cards" data-album-search-cards></div>
+    <div class="load-more"></div>
+
+    <template data-album-template>
+        <div class="card" data-card>
+            <div class="album-cover-container">
+                <img class="album-cover" alt="Album Cover" data-album-cover>
+                <a class="spotify-icon-container" target="_blank" data-spotify-icon-container>
+                    <img class="spotify-icon" src="static/images/spotify-icon.svg">
+                </a>
+
+                <img class="delete-button" src="static/images/delete-icon.svg" data-delete-button>
+            </div>
+
+            <div class="album-name" data-album-name></div>
+            <div class="artist-name" data-artist-name></div>
+        </div>
+    </template>
+
+    <script src="{{ url_for('static', filename='library.js') }}"></script>
+    {% endif %}
+
+
+</body>
+
+</html>
