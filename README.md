@@ -1,4 +1,4 @@
-# spotify-app
+# Spotify Album Tracker Webapp
 
 This is a basic web-app that uses a flask backend and pure JS frontend that allows for users to track what albums they listend to and when, using SQLAlchmey toolkit to host a database to store user entries. You can search for albums, mark them as listened to, review, rate, and timestamp them, along with the ability to remove unwanted entries. It also has basic infinite scrolling.
 
